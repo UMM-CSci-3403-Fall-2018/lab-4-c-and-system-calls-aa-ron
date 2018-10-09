@@ -4,10 +4,11 @@
 #define BUF_SIZE 1024
 
 bool is_vowel(char c) {
-    /*
-     * Returns true if c is a vowel (upper or lower case), and
-     * false otherwise.
-     */
+  if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'A' || letter == 'E'|| letter == 'I'|| letter == 'O'|| letter == 'U'){
+    return true;
+  } else {
+    return false;
+  }
 }
 
 int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
@@ -28,14 +29,31 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
      */
 }
 
+
 int main(int argc, char *argv[]) {
     FILE *inputFile;
     FILE *outputFile;
 
-    // Code that processes the command line arguments
-    // and sets up inputFile and outputFile.
+    //Nothing passed into command line. Read from STDIN
+    if(argc == 0){
 
-    disemvowel(inputFile, outputFile);
+    }
+
+    //Read from file, print to STDOUT
+    else if(argc == 1){
+
+    }
+
+    //Read from file, write from file
+    else if(arc == 2){
+
+    }
+
+    if(arc > 2){
+      printf("Warning! Extraneous arguments passed. Only the first two were handled.")
+    }
+
+
 
     return 0;
 }
