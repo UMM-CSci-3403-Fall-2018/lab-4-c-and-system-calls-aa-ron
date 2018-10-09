@@ -1,50 +1,41 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
-#include "file_disemvowel.h"
+#define BUF_SIZE 1024
 
-bool* isVowel(char letter){
-  if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'A' || letter == 'E'|| letter == 'I'|| letter == 'O'|| letter == 'U'){
-    return (bool*)true;
-  } else {
-    return (bool*)false;
-  }
+bool is_vowel(char c) {
+    /*
+     * Returns true if c is a vowel (upper or lower case), and
+     * false otherwise.
+     */
 }
 
-char *disemvowel(char *str) {
-  int size;
-  int vowels, i, j;
-  char *result;
+int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
+    /*
+     * Copy all the non-vowels from in_buf to out_buf.
+     * num_chars indicates how many characters are in in_buf,
+     * and this function should return the number of non-vowels that
+     * that were copied over.
+     */
+}
 
-  size = strlen(str);
+void disemvowel(FILE* inputFile, FILE* outputFile) {
+    /*
+     * Copy all the non-vowels from inputFile to outputFile.
+     * Create input and output buffers, and use fread() to repeatedly read
+     * in a buffer of data, copy the non-vowels to the output buffer, and
+     * use fwrite to write that out.
+     */
+}
 
-  vowels = 0;
-  for(i=0; i<size; i++) {
-    if(isVowel(str[i])){
-      vowels++;
-    }
-  }
+int main(int argc, char *argv[]) {
+    FILE *inputFile;
+    FILE *outputFile;
 
-  if(vowels == 0){
-    return str;
-  }
+    // Code that processes the command line arguments
+    // and sets up inputFile and outputFile.
 
-  if(vowels >= size){
-    return (char*) "";
-  }
+    disemvowel(inputFile, outputFile);
 
-  result = (char*) calloc(size-vowels+1, sizeof(char));
-
-  j=0;
-  for(i=0; i<size; i++) {
-    if(!isVowel(str[i])){
-      result[j]=str[i];
-      j++;
-    }
-  }
-  result[j]='\0';
-
-  return result;
+    return 0;
 }
