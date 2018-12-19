@@ -46,13 +46,13 @@ void disemvowel(FILE* inFile, FILE* outFile) {
 
 
 int main(int argc, char *argv[]) {
-  FILE *inFile;
-  FILE *outFile;
+  FILE *input;
+  FILE *output;
 
   //Nothing passed into command line. Read from STDIN
   if(argc == 1){
-    inFile = stdin;
-   	outFile = stdout;
+    input = stdin;
+   	output = stdout;
   }
 
   //Read from file, print to STDOUT
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
   if(argc > 2){
     printf("Warning! Extraneous arguments passed. Only the first two were handled.");
   }
-  
+
   disemvowel(input, output);
 
   fclose(input);
