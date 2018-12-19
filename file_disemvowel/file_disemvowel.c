@@ -34,6 +34,7 @@ void disemvowel(FILE* inFile, FILE* outFile) {
 
   char *inBuf = (char*) calloc(BUF_SIZE,sizeof(char));
   char *outBuf = (char*) calloc(BUF_SIZE,sizeof(char));
+
   size_t bufSize = fread(inBuf, sizeof(char), BUF_SIZE, inFile);
 
   while(bufSize != 0){
@@ -49,26 +50,31 @@ int main(int argc, char *argv[]) {
   FILE *outFile;
 
   //Nothing passed into command line. Read from STDIN
-  if(argc == 0){
+  if(argc == 1){
     inFile = stdin;
    	outFile = stdout;
-    disemvowel(inFile, outFile);
   }
 
   //Read from file, print to STDOUT
-  else if(argc == 1){
-
+  else if(argc == 2){
+    input = fopen(argv[1], "r");
+    output = stdout;
   }
 
   //Read from file, write from file
-  else if(argc == 2){
-
+  else if(argc == 3){
+    input = fopen(argv[1], "r");
+    output = fopen(argv[2], "w");
   }
 
   if(argc > 2){
     printf("Warning! Extraneous arguments passed. Only the first two were handled.");
   }
+  
+  disemvowel(input, output);
 
+  fclose(input);
+  fclose(output);
 
 
   return 0;
