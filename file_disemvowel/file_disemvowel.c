@@ -16,7 +16,7 @@ int copy_non_vowels(int numChars, char* inBuf, char* outBuf) {
   int outIndex = 0;
   for(int i = 0; i < numChars; i ++){
     if(!is_vowel(inBuf[i])){
-      inBuf[i] = outBuf[outIndex];
+      outBuf[outIndex] = inBuf[i];
       outIndex++;
     }
   }
@@ -35,13 +35,17 @@ void disemvowel(FILE* inFile, FILE* outFile) {
   char *inBuf = (char*) calloc(BUF_SIZE,sizeof(char));
   char *outBuf = (char*) calloc(BUF_SIZE,sizeof(char));
 
-  size_t bufSize = fread(inBuf, sizeof(char), BUF_SIZE, inFile);
+  int bufSize = fread(inBuf, sizeof(char), BUF_SIZE, inFile);
 
   while(bufSize != 0){
     int non_vowels = copy_non_vowels(bufSize, inBuf, outBuf);
     fwrite(outBuf, sizeof(char), non_vowels, outFile);
     bufSize = fread(inBuf, sizeof(char), BUF_SIZE, inFile);
   }
+  bufSize = fread(inBuf, sizeof(char), BUF_SIZE, inFile);
+
+  free(inBuf);
+  free(outBuf);
 }
 
 
