@@ -19,7 +19,7 @@ bool is_dir(const char* path) {
    struct stat path_stat;
    if (stat(path, &path_stat) != 0 ) {
        printf("Statbuf ran into an issue.");
-       return;
+       return 1;
    }
    return S_ISREG(path_stat.st_mode);
 }
@@ -43,13 +43,14 @@ void process_directory(const char* path) {
    * done.
    */
    num_dirs++;
-   DIR* dir = opendir(path);
-   struct dirent* entry;
+   DIR* dir;
+   dir = opendir(path);
    chdir(path);
 
-   while(struct dirent *entry = readdir(dir)){
-       if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..")!= 0) {
-         process_path(entry->d_name);
+   struct dirent* next;
+   while((next = (readdir(dir))) != NULL){
+       if (strcmp(next->d_name, ".") != 0 && strcmp(next->d_name, "..")!= 0) {
+         process_path(next->d_name);
        }
      }
      chdir("..");
