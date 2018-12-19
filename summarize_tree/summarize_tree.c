@@ -44,7 +44,7 @@ void process_directory(const char* path) {
    */
    num_dirs++;
    DIR* dir = opendir(path);
-   chdir(path)
+   chdir(path);
 
    while(struct dirent *entry = readdir(dir)){
        if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..")!= 0) {
@@ -52,7 +52,7 @@ void process_directory(const char* path) {
        }
      }
      chdir("..");
-   
+
    closedir(dir);
 }
 
