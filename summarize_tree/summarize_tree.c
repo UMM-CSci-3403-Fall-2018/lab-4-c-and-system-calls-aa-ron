@@ -16,6 +16,12 @@ bool is_dir(const char* path) {
    * return value from stat in case there is a problem, e.g., maybe the
    * the file doesn't actually exist.
    */
+   struct stat path_stat;
+   if (stat(path, &path_stat) != 0 ) {
+       printf("Statbuf ran into an issue.");
+       return;
+   }
+   return S_ISREG(path_stat.st_mode);
 }
 
 /* 
@@ -42,6 +48,7 @@ void process_file(const char* path) {
   /*
    * Update the number of regular files.
    */
+   num_regular++;
 }
 
 void process_path(const char* path) {
