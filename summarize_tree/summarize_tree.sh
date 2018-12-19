@@ -6,6 +6,6 @@ path=$1
 dirs=$(find $path -type d | wc -l)
 files=$(find $path -type f | wc -l)
 
-#print
-echo Directories: $dirs
-echo Files: $files
+#files
+echo There were $dirs directories.
+echo There were $files regular files.
